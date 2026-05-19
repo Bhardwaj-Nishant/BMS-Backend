@@ -1,0 +1,29 @@
+package com.bookmyshow.bms.model;
+
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Entity
+@Table(name="theater")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Theater {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String address;
+    private String city;
+    private Integer totalScreens;
+
+    @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
+    private List<Screen> screens;
+
+}
